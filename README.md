@@ -39,7 +39,7 @@ UI Update
 
 ---
 
-## 🌿 Branch Structure
+## 📂 Branch Structure
 
 This repository contains multiple branches for different frontend implementations of the same application.
 
@@ -50,7 +50,11 @@ This repository contains multiple branches for different frontend implementation
 
 ---
 
+---
+
 ## 🌐 Vanilla Frontend Branch
+
+---
 
 ### `feature/frontend-vanilla-html-css-js`
 
@@ -118,7 +122,7 @@ src/
 
 ---
 
-## 📌 Future Scope
+# 📌 Future Enhancements
 
 This project can be further extended with:
 
