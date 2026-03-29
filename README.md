@@ -50,8 +50,6 @@ This repository contains multiple branches for different frontend implementation
 
 ---
 
----
-
 ## 🌐 Vanilla Frontend Branch
 
 ---
