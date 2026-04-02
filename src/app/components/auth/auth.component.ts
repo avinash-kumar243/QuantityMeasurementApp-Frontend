@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -11,13 +11,14 @@ import { Router } from '@angular/router';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
   isLoginMode = true;
   errorMessage = '';
   successMessage = '';
 
   private authService = inject(AuthService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   authData = {
     username: '',
@@ -25,6 +26,22 @@ export class AuthComponent {
     password: '',
     confirmPassword: ''
   };
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      const token = params['token'];
+      const oauth2 = params['oauth2'];
+
+      if (token && oauth2 === 'success') {
+        this.authService.handleGoogleToken(token);
+        this.successMessage = 'Google login successful! Redirecting...';
+
+        setTimeout(() => {
+          this.router.navigate(['/dashboard']);
+        }, 1000);
+      }
+    });
+  }
 
   clearMessages() {
     this.errorMessage = '';
@@ -34,6 +51,11 @@ export class AuthComponent {
   toggleMode() {
     this.isLoginMode = !this.isLoginMode;
     this.clearMessages();
+  }
+
+  loginWithGoogle() {
+    this.clearMessages();
+    this.authService.loginWithGoogle();
   }
 
   private isValidUsername(username: string): boolean {
