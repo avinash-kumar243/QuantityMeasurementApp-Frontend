@@ -39,24 +39,33 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: white;
+    background: #4062eb;
     padding: 18px 24px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
+.header-actions {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 12px;
+}
+
+
+
 .app-title {
     margin: 0;
+    color: white;
     font-size: 1.5rem;
     font-weight: 700;
     text-align: center;
 }
 
+.history-btn,
 .logout-btn {
-    position: absolute;
-    right: 24px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #4a6cf7;
+    background: #121489;
     color: white;
     border: none;
     border-radius: 12px;
@@ -68,6 +77,7 @@ body {
     transition: 0.3s ease;
 }
 
+.history-btn:hover,
 .logout-btn:hover {
     background: #2f54eb;
 }
@@ -162,7 +172,7 @@ body {
 .action-btn {
     padding: 16px 18px;
     border: none;
-    background: #4a6cf7;
+    background: #4062eb;
     color: white;
     border-radius: 12px;
     font-weight: 700;
@@ -173,12 +183,14 @@ body {
 }
 
 .action-btn:hover {
-    background: #3b5bdb;
-    transform: translateY(-1px);
+    background: #194398;
+    color: #ffffff;
+    transform: scale(1.03);
+    box-shadow: 0 10px 24px rgba(102, 138, 216, 0.25);
 }
 
 .action-btn.active {
-    background: #2f54eb;
+    background: #121489;
     color: white;
 }
 
@@ -284,7 +296,7 @@ body {
 }
 
 .calculate-btn:hover {
-    background: #222;
+    background: #194398;
 }
 
 /* Result Display */

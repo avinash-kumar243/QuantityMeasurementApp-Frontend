@@ -1,7 +1,11 @@
 <header class="header">
   <div class="header-ribbon">
     <h2 class="app-title">Quantity Measurement App</h2>
-    <button class="logout-btn" (click)="authService.logout()">Logout</button>
+
+    <div class="header-actions">
+      <button class="history-btn" (click)="goToHistory()">History</button>
+      <button class="logout-btn" (click)="authService.logout()">Logout</button>
+    </div>
   </div>
 </header>
 

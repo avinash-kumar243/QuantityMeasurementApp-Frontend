@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,6 +16,7 @@ import { AuthService } from '../../services/auth.service';
 export class DashboardComponent implements OnInit {
   authService = inject(AuthService);
   http = inject(HttpClient);
+  router = inject(Router);
 
   selectedType = 'LengthUnit';
   selectedAction = 'add';
@@ -32,6 +34,10 @@ export class DashboardComponent implements OnInit {
   calc = { val1: 1, val2: 1, unit1: '', unit2: '', operator: 'add' };
 
   ngOnInit() { this.updateUnits(); }
+
+  goToHistory() {
+    this.router.navigate(['/history']);
+  }
 
   updateUnits() {
     this.calc.unit1 = this.units[this.selectedType][0];
