@@ -188,3 +188,50 @@ input {
     object-fit: contain;
     display: block;
 }
+
+.forgot-password-row {
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.forgot-link-btn {
+    background: none;
+    border: none;
+    color: rgb(42, 38, 247);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0;
+}
+
+.forgot-link-btn:hover {
+    text-decoration: underline;
+}
+
+.secondary-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #f1f3f5;
+    border: 1px solid #dcdcdc;
+    color: #333;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.secondary-btn:hover {
+    background-color: #e9ecef;
+}
+
+.forgot-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: rgb(42, 38, 247);
+}
+
+.forgot-title h3 {
+    margin: 0;
+    font-size: 22px;
+}

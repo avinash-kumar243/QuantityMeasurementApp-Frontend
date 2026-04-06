@@ -1,10 +1,14 @@
 <div class="from-container">
-    <div class="choose-option">
+    <div class="choose-option" *ngIf="!showForgotPasswordFlow">
         <button type="button" [class.active]="isLoginMode" (click)="toggleMode()">Login</button>
         <button type="button" [class.active]="!isLoginMode" (click)="toggleMode()">Signup</button>
     </div>
 
-    <form (ngSubmit)="onSubmit()" autocomplete="off">
+    <div class="forgot-title" *ngIf="showForgotPasswordFlow">
+        <h3>Forgot Password</h3>
+    </div>
+
+    <form *ngIf="!showForgotPasswordFlow" (ngSubmit)="onSubmit()" autocomplete="off">
         <div class="f-group" *ngIf="!isLoginMode">
             <label>Username</label>
             <input
@@ -45,6 +49,12 @@
                 (input)="clearMessages()">
         </div>
 
+        <div class="forgot-password-row" *ngIf="isLoginMode">
+            <button type="button" class="forgot-link-btn" (click)="openForgotPasswordFlow()">
+                Forgot Password?
+            </button>
+        </div>
+
         <div *ngIf="errorMessage" class="error-alert">{{ errorMessage }}</div>
         <div *ngIf="successMessage" class="success-alert">{{ successMessage }}</div>
 
@@ -53,12 +63,85 @@
         </button>
     </form>
 
-    <div class="divider">
+    <form *ngIf="showForgotPasswordFlow && showForgotPasswordEmailStep" autocomplete="off">
+        <div class="f-group">
+            <label>Enter your registered email</label>
+            <input
+                type="email"
+                [(ngModel)]="forgotPasswordData.email"
+                name="forgotEmail"
+                required
+                (input)="clearMessages()">
+        </div>
+
+        <div *ngIf="errorMessage" class="error-alert">{{ errorMessage }}</div>
+        <div *ngIf="successMessage" class="success-alert">{{ successMessage }}</div>
+
+        <button type="button" class="submit-btn" (click)="requestOtp()">Send OTP</button>
+        <button type="button" class="secondary-btn" (click)="cancelForgotPasswordFlow()">Back to Login</button>
+    </form>
+
+    <form *ngIf="showForgotPasswordFlow && showOtpStep" autocomplete="off">
+        <div class="f-group">
+            <label>Email</label>
+            <input
+                type="email"
+                [(ngModel)]="forgotPasswordData.email"
+                name="otpEmail"
+                readonly>
+        </div>
+
+        <div class="f-group">
+            <label>Enter OTP</label>
+            <input
+                type="text"
+                [(ngModel)]="forgotPasswordData.otp"
+                name="otp"
+                required
+                (input)="clearMessages()">
+        </div>
+
+        <div *ngIf="errorMessage" class="error-alert">{{ errorMessage }}</div>
+        <div *ngIf="successMessage" class="success-alert">{{ successMessage }}</div>
+
+        <button type="button" class="submit-btn" (click)="verifyOtp()">Verify OTP</button>
+        <button type="button" class="secondary-btn" (click)="backToEmailStep()">Back</button>
+    </form>
+
+    <form *ngIf="showForgotPasswordFlow && showResetPasswordStep" autocomplete="off">
+        <div class="f-group">
+            <label>New Password</label>
+            <input
+                type="password"
+                [(ngModel)]="forgotPasswordData.newPassword"
+                name="newPassword"
+                required
+                (input)="clearMessages()">
+        </div>
+
+        <div class="f-group">
+            <label>Confirm New Password</label>
+            <input
+                type="password"
+                [(ngModel)]="forgotPasswordData.confirmPassword"
+                name="confirmNewPassword"
+                required
+                (input)="clearMessages()">
+        </div>
+
+        <div *ngIf="errorMessage" class="error-alert">{{ errorMessage }}</div>
+        <div *ngIf="successMessage" class="success-alert">{{ successMessage }}</div>
+
+        <button type="button" class="submit-btn" (click)="resetPassword()">Reset Password</button>
+        <button type="button" class="secondary-btn" (click)="backToOtpStep()">Back</button>
+    </form>
+
+    <div class="divider" *ngIf="!showForgotPasswordFlow">
         <span>OR</span>
     </div>
 
-    <button type="button" class="google-btn" (click)="loginWithGoogle()">
+    <button type="button" class="google-btn" *ngIf="!showForgotPasswordFlow" (click)="loginWithGoogle()">
         <img src="/google-icon.png" alt="Google" class="google-icon-img">
-        <span>Continue with Google</span> 
+        <span>Continue with Google</span>
     </button>
 </div>
