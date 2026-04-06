@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
 
     const actionUrl = this.isArithmeticMode ? this.calc.operator : this.selectedAction;
     
-    this.http.post(`http://localhost:8080/api/v1/quantities/${actionUrl}`, body)
+    this.http.post(`quantitymeasurementapp-production-6c3d.up.railway.app/api/v1/quantities/${actionUrl}`, body)
       .subscribe({
         next: (res) => this.result = res,
         error: (err) => this.error = "Measurement failed: " + (err.error?.message || "Server Error")
