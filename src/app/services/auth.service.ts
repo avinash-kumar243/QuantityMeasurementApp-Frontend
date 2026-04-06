@@ -13,8 +13,8 @@ interface AuthResponse {
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
-  private apiUrl = 'http://quantitymeasurementapp-production-6c3d.up.railway.app/auth';
-  private backendBaseUrl = 'http://localhost:8080';
+  private apiUrl = 'https://quantitymeasurementapp-production-6c3d.up.railway.app/auth';
+  private backendBaseUrl = 'https://quantitymeasurementapp-production-6c3d.up.railway.app';
 
   register(userData: any): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/signup`, userData).pipe(
