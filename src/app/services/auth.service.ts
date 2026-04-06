@@ -70,7 +70,7 @@ export class AuthService {
       })
     );
   }
-
+ 
   loginWithGoogle(): void {
     window.location.href = `${this.backendBaseUrl}/oauth2/authorization/google`;
   }
