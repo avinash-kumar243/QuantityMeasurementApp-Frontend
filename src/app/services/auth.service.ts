@@ -13,7 +13,7 @@ interface AuthResponse {
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
-  private apiUrl = 'http://localhost:8080/auth';
+  private apiUrl = 'http://quantitymeasurementapp-production-6c3d.up.railway.app/auth';
   private backendBaseUrl = 'http://localhost:8080';
 
   register(userData: any): Observable<AuthResponse> {
