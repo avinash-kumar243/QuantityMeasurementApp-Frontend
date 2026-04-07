@@ -41,35 +41,6 @@ export class AuthService {
       })
     );
   }
-
-  requestOtp(email: string): Observable<string> {
-    return this.http.post(`${this.apiUrl}/forgot-password/request-otp`, { email }, { responseType: 'text' }).pipe(
-      catchError((error: any) => {
-        return throwError(() => error);
-      })
-    );
-  }
-
-  verifyOtp(email: string, otp: string): Observable<string> {
-    return this.http.post(`${this.apiUrl}/forgot-password/verify-otp`, { email, otp }, { responseType: 'text' }).pipe(
-      catchError((error: any) => {
-        return throwError(() => error);
-      })
-    );
-  }
-
-  resetPassword(payload: {
-    email: string;
-    otp: string;
-    newPassword: string;
-    confirmPassword: string;
-  }): Observable<string> {
-    return this.http.post(`${this.apiUrl}/forgot-password/reset`, payload, { responseType: 'text' }).pipe(
-      catchError((error: any) => {
-        return throwError(() => error);
-      })
-    );
-  }
  
   loginWithGoogle(): void {
     window.location.href = `${this.backendBaseUrl}/oauth2/authorization/google`;
