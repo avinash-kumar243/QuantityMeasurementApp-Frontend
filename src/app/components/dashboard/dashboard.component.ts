@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,8 @@ export class DashboardComponent implements OnInit {
   authService = inject(AuthService);
   http = inject(HttpClient);
   router = inject(Router);
+
+  private backendBaseUrl = environment.backendBaseUrl;
 
   selectedType = 'LengthUnit';
   selectedAction = 'add';
@@ -63,7 +66,8 @@ export class DashboardComponent implements OnInit {
 
     const actionUrl = this.isArithmeticMode ? this.calc.operator : this.selectedAction;
     
-    this.http.post(`https://quantitymeasurementapp-production-6c3d.up.railway.app/api/v1/quantities/${actionUrl}`, body)
+    this.http
+      .post(`${this.backendBaseUrl}/api/v1/quantities/${actionUrl}`, body)
       .subscribe({
         next: (res) => this.result = res,
         error: (err) => this.error = "Measurement failed: " + (err.error?.message || "Server Error")

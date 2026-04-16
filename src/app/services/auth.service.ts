@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, tap, catchError } from 'rxjs';
 import { throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 interface AuthResponse {
   token: string;
@@ -13,8 +14,8 @@ interface AuthResponse {
 export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
-  private apiUrl = 'https://quantitymeasurementapp-production-6c3d.up.railway.app/auth';
-  private backendBaseUrl = 'https://quantitymeasurementapp-production-6c3d.up.railway.app';
+  private backendBaseUrl = environment.backendBaseUrl;
+  private apiUrl = `${this.backendBaseUrl}/auth`;
 
   register(userData: any): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.apiUrl}/signup`, userData).pipe(
