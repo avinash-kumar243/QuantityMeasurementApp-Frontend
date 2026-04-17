@@ -3,7 +3,7 @@ const path = require('path');
 require('dotenv').config();
 
 // This targets your production environment file
-const targetPath = path.join(__dirname, '../src/environments/environment.ts');
+const targetPath = path.join(__dirname, '../src/environments/environment.prod.ts');
 
 const envConfigFile = `export const environment = {
   production: true,
