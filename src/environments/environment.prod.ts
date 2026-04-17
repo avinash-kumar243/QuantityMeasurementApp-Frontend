@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendBaseUrl: 'BACKEND_BASE_URL'
+  backendBaseUrl: 'https://quantitymeasurementapp-production-6c3d.up.railway.app'
 };
